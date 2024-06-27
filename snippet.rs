@@ -93,7 +93,7 @@ pub fn trace_ray<const N: usize>(
             specular_bounce = false;
             let (_, normal, e1, e2) = interaction.get_triad();
             ray = Ray3D {
-                direction: material.to_world(normal, e1, e2, new_dir),
+                direction: material.to_world(normal, e1, e2, new_dir), // appropriately transform the local ray into worlds coordinates
                 origin: interaction.point + normal * 0.001,
             }
         }
