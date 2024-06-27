@@ -85,7 +85,11 @@ pub fn trace_ray<const N: usize>(
             let cos_theta = new_dir.z; // cosine of the angle between UP and new_dir
             let pdf = 0.5 / PI; // uniformly distributed, so 1/2*PI
             let spectrum = material.colour() / PI; // rho over P for lambertian materials
+
+            /****************************/
+            // THIS 1.07 IS THE HACK
             beta *= spectrum * cos_theta / (pdf * 1.07);
+            /****************************/
             specular_bounce = false;
             let (_, normal, e1, e2) = interaction.get_triad();
             ray = Ray3D {
